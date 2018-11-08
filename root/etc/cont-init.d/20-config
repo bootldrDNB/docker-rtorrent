@@ -1,8 +1,8 @@
 #!/usr/bin/with-contenv bash
 
 # make folders (Original)
-mkdir -p /downloads{/completed,/incoming,/watched} \
-	 /config/tmp 
+mkdir -p /downloads \
+	 /config/rtorrent/{rtorrent_sess,watch,log} 
 	 /detach_sess
 
 

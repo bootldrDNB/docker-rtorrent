@@ -2,7 +2,7 @@ const CONFIG = {
   baseURI: '/',
   dbCleanInterval: 1000 * 60 * 60,
   dbPath: '/config/flood-db/',
-  floodServerHost: '0.0.0.0',
+  floodServerHost: '127.0.0.1',
   floodServerPort: 3000,
   floodServerProxy: 'http://127.0.0.1',
   maxHistoryStates: 30,
@@ -14,9 +14,7 @@ const CONFIG = {
     socket: true,
     socketPath: '/run/php/.rtorrent.sock'
   },
-  ssl: true,
-  sslKey: '/config/nginx/key.pem',
-  sslCert: '/config/nginx/cert.pem',
+  ssl: false,
   torrentClientPollInterval: 1000 * 2
 };
 

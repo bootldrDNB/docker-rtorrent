@@ -16,10 +16,9 @@ ARG CURL_VER="7.61.0"
 # set env
 ENV PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 ENV LD_LIBRARY_PATH=/usr/local/lib
-# Set this secret in docker-compose.yml
-ENV FLOOD_SECRET=password
-ENV CONTEXT_PATH=/
-    
+ENV PGID
+ENV PUID
+   
 RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
  apk add --no-cache \
         ffmpeg \
@@ -105,23 +104,6 @@ wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | 
         ./CLI_Compile.sh && \
  cd /tmp/mediainfo/MediaInfo/Project/GNU/CLI && \
         make install && \
-
-# install flood webui
- apk add --no-cache \
-     python \
-     nodejs \
-     nodejs-npm && \
-
- mkdir /usr/flood && \
- cd /usr/flood && \
- git clone https://github.com/jfurrow/flood . && \
- cp config.template.js config.js && \
- npm install -g node-gyp && \
- npm install && \
- npm cache clean --force && \
- npm run build && \
- rm config.js && \
-
 # cleanup
  apk del --purge \
         build-dependencies && \
@@ -133,5 +115,5 @@ wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | 
 COPY root/ /
 
 # ports and volumes
-EXPOSE 443 51415 3000
+EXPOSE 51415
 VOLUME /config /downloads

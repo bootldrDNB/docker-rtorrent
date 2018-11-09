@@ -1,6 +1,6 @@
 # docker-rtorrent
 
-This is my first Docker image, and is the result of many hours of research and banging my head against the wall.
+This repository is the result of many hours of research and banging my head against the wall trying to figure out this new technology.
 
 Sources used:
 

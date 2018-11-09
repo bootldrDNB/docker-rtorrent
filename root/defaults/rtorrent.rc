@@ -1,5 +1,5 @@
 # Directory Management
-directory = /downloads/
+directory = /downloads
 session = /config/rtorrent/rtorrent_sess
 
 # Log file management
@@ -41,7 +41,8 @@ pieces.memory.max.set = 4096M
 pieces.preload.type.set = 1
 
 # General watch directory
-schedule2 = watch_start, 10, 10, ((load.start_verbose, (cat, (cfg.watch), "/config/rtorrent/watch/*.torrent")))
+schedule = watch_directory,1,1,"load.start=/config/rtorrent/watch/*.torrent"
+schedule = untied_directory,5,5,"stop_untied=/config/rtorrent/watch/*.torrent"
 
 # Stop seeding when .torrent from watch file is deleted
 schedule = untied_directory,5,5,stop_untied=

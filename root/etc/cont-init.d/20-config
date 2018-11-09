@@ -1,15 +1,13 @@
 #!/usr/bin/with-contenv bash
 
 # make folders (Original)
-mkdir -p /downloads \
-	 /config/rtorrent/{rtorrent_sess,watch,log} 
-	 /detach_sess
+mkdir -p /downloads /config/rtorrent/{rtorrent_sess,watch,log}
 
+# copy rtorrent.rc
+[[ ! -e /config/rtorrent/rtorrent.rc ]] && \
+	cp /defaults/rtorrent.rc /config/rtorrent/rtorrent.rc
 
 # delete lock file if exists
 [[ -e /config/rtorrent/rtorrent_sess/rtorrent.lock ]] && \
 	rm /config/rtorrent/rtorrent_sess/rtorrent.lock
 
-# permissions
-chown abc:abc /downloads
-chmod 755 /usr/local/bin/curl

@@ -42,6 +42,7 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} \
     gzip \
     zip \
     zlib \
+    screen \
     python \
     unrar \
     findutils \

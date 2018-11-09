@@ -1,29 +1,38 @@
-# rtorrent-docker
+# docker-rtorrent
 
-This image is heavily based off of [romancin](https://github.com/romancin/rutorrent-flood-docker)'s original work.
-Thanks for that!
+This is my first Docker image, and is the result of many hours of research and banging my head against the wall.
 
-Every other service but rTorrent has been stripped, and configurations have been optimized for their usage.
+Sources used:
 
-Instructions: 
-- Map any local port to 51415 for rtorrent 
-- Map any local port to 3000 for SSL flood access
-- Map a local volume to /config (Stores configuration data, including rtorrent session directory. Consider this on SSD Disk) 
-- Map a local volume to /downloads (Stores downloaded torrents)
+  - [Wonderfall/docker-rtorrent-flood](https://github.com/Wonderfall/docker-rtorrent-flood)
+  - [linuxserver/docker-rutorrent](https://github.com/linuxserver/docker-rutorrent)
+  - [romancin/rutorrent-flood-docker](https://github.com/romancin/rutorrent-flood-docker)
+  
+  rTorrent is listening on port `51415`.
+  Directories used are: `/downloads` for your downloaded files, and `/config` for your rTorrent configuration files and watch folders.
+  Bind these folders in your respective configuration utilities.
+  
+  To use this image, use either `docker build` or `docker-compose`.
+  A docker-compose file for this project can look something like this, tweak them to your needs!
+  
+  ```
+  version: "3"
 
-Sample run command:
-
-For rtorrent 0.9.6 version:
-
-```bash
-docker run -d --name=rutorrent-flood \
--v /share/Container/rutorrent-flood/config:/config \
--v /share/Container/rutorrent-flood/downloads:/downloads \
--e PGID=0 -e PUID=0 -e TZ=Europe/Madrid \
--p 9443:443 \
--p 3000:3000 \
--p 51415-51415:51415-51415 \
-romancin/rutorrent-flood:latest
-```
-
-Remember to edit `/config/rtorrent/rtorrent.rc` with your own settings, especially your watch subfolder configuration.
+services:
+  rtorrent:
+    build: .
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ="Europe/Amsterdam"
+    container_name: rtorrent
+    network_mode: host
+    restart: always
+    volumes:
+      - "/storage/rtorrent/downloads/:/downloads"
+      - "/storage/rtorrent/instance/:/config/rtorrent"
+    ports:
+      - "51415:51415"
+      ```
+      
+      

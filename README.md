@@ -1,6 +1,6 @@
 # docker-rtorrent
 
-This repository is the result of many hours of research and banging my head against the wall trying to figure out this new technology.
+This repository is the result of many hours of research and banging my head against the wall trying to figure out how Docker works for the first time.
 
 Sources used:
 

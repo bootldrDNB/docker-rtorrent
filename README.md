@@ -15,7 +15,7 @@ Sources used:
   To use this image, use either `docker build` or `docker-compose`.
   A docker-compose file for this project can look something like this, tweak them to your needs!
   
-  ```
+  ```yaml
   version: "3"
 
 services:

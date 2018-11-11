@@ -44,6 +44,9 @@ pieces.preload.type.set = 1
 schedule = watch_directory,1,1,"load.start=/config/rtorrent/watch/*.torrent"
 schedule = untied_directory,5,5,"stop_untied=/config/rtorrent/watch/*.torrent"
 
+# Add time variable for Flood
+method.set_key=event.download.inserted_new,loaded_time,"d.custom.set=addtime,$cat=$system.time=;d.save_full_session="
+
 # Stop seeding when .torrent from watch file is deleted
 schedule = untied_directory,5,5,stop_untied=
 

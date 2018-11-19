@@ -31,7 +31,5 @@ services:
     volumes:
       - "/storage/rtorrent/downloads/:/downloads"
       - "/storage/rtorrent/instance/:/config/rtorrent"
-    ports:
-      - "51415:51415"
 
 ```

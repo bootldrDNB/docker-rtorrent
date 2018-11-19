@@ -36,6 +36,8 @@ bind = 0.0.0.0
 
 # Allow rTorrent to consume 4GB of memory.
 pieces.memory.max.set = 4096M
+# Allow larger torrent files to be pushed over XML RPC
+network.xmlrpc.size_limit.set = 4M
 
 # tuning parameters
 pieces.preload.type.set = 1
